@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kanitas Henna</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<title>Ftesë Dasme - Kanita & Ernad</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Alex+Brush&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
 <style>
     body {
         margin: 0;
         padding: 0;
-        background-color: #e6e2da; 
+        background-color: #f7f5f0; 
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -18,7 +18,7 @@
         font-family: 'Cormorant Garamond', serif;
     }
 
-    /* Seksioni i Zarfit */
+    /* SEKSIONI I ZARFIT */
     .envelope-section {
         width: 100%;
         height: 100vh;
@@ -34,10 +34,10 @@
         position: relative;
         width: 330px;
         height: 230px;
-        background-color: #4a1220; 
+        background-color: #16253b; 
         cursor: pointer;
         border-radius: 3px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.25);
     }
 
     .envelope-flap {
@@ -48,11 +48,11 @@
         height: 0;
         border-left: 165px solid transparent;
         border-right: 165px solid transparent;
-        border-top: 130px solid #5c182a; 
+        border-top: 130px solid #1f324e; 
         transform-origin: top;
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 4;
-        filter: drop-shadow(0 4px 5px rgba(0,0,0,0.3));
+        filter: drop-shadow(0 4px 5px rgba(0,0,0,0.25));
     }
 
     .envelope-base {
@@ -61,9 +61,9 @@
         left: 0;
         width: 0;
         height: 0;
-        border-left: 165px solid #4a1220;
-        border-right: 165px solid #4a1220;
-        border-bottom: 120px solid #380b16;
+        border-left: 165px solid #16253b;
+        border-right: 165px solid #16253b;
+        border-bottom: 120px solid #0d1827;
         z-index: 3;
     }
 
@@ -73,21 +73,23 @@
         left: 15px;
         width: 300px;
         height: 205px;
-        background-color: #500b1d;
+        background-color: #fcfbfa;
         z-index: 2;
-        border-radius: 100px 100px 0 0; 
+        border-radius: 2px;
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+        box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+        border: 1px solid #ebdcb9;
     }
 
     .preview-card span {
-        color: #f1e7d2;
-        font-family: 'Great Vibes', cursive;
-        font-size: 24px;
-        letter-spacing: 1px;
+        color: #7d644d;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 20px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
     }
 
     .wax-seal {
@@ -96,10 +98,10 @@
         left: 137px;
         width: 56px;
         height: 56px;
-        border-radius: 49% 51% 48% 52%; 
-        background: radial-gradient(circle at 35% 35%, #e6ca8e, #caa052 65%, #a37932);
+        border-radius: 50%; 
+        background: radial-gradient(circle at 35% 35%, #f3e1bc, #caa052 65%, #a37932);
         z-index: 5;
-        box-shadow: 0 5px 12px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.4);
+        box-shadow: 0 5px 12px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.4);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -107,10 +109,13 @@
     }
 
     .wax-seal::before {
-        content: "🌿"; 
-        font-size: 22px;
-        opacity: 0.55;
-        filter: grayscale(1) sepia(1) hue-rotate(5deg) brightness(0.65);
+        content: "E & K"; 
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 13px;
+        font-weight: bold;
+        color: #5c4314;
+        opacity: 0.7;
+        letter-spacing: 0.5px;
     }
 
     .hint-text {
@@ -120,7 +125,7 @@
         text-align: center;
         font-size: 11px;
         letter-spacing: 2px;
-        color: #805c66;
+        color: #59677a;
     }
 
     .envelope-wrapper.open .envelope-flap {
@@ -139,126 +144,232 @@
         pointer-events: none;
     }
 
-    /* KARTA E PLOTË E FTESËS SI NË FOTO */
+    /* STRUKTURA KRYESORE 3D FLIP */
     .main-invitation-container {
         width: 100%;
-        max-width: 400px;
+        max-width: 420px;
         display: none; 
         opacity: 0;
         box-sizing: border-box;
-        padding: 20px 15px 60px 15px;
-        animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        padding: 20px 15px 40px 15px;
+        perspective: 1000px; /* Mundëson efektin 3D */
     }
 
-    .invitation-card {
-        width: 100%;
-        background-color: #dfdacd; 
+    .flip-card-inner {
         position: relative;
-        padding: 45px 25px;
-        box-sizing: border-box;
+        width: 100%;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+    }
+
+    /* Kur shtohet kjo klasë nga JS, karta rrotullohet */
+    .flip-card-inner.flipped {
+        transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+        width: 100%;
+        backface-visibility: hidden; /* Fsheh pjesën e prapme gjatë rrotullimit */
         border-radius: 4px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+        box-sizing: border-box;
+    }
+
+    /* FAQJA 1: KOPERTINA ME FOTO (image_7.png) */
+    .card-front {
+        background-color: #fdfbf7;
+        padding: 15px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        overflow: hidden;
+        border: 1px solid #eeebe3;
     }
 
-    .burgundy-arch {
+    .photo-wrapper {
         width: 100%;
-        background: linear-gradient(180deg, #4d0b1a 0%, #3a0511 100%);
-        border-radius: 160px 160px 0 0; 
-        padding: 70px 20px 60px 20px;
-        box-sizing: border-box;
-        text-align: center;
-        box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
-        color: #f5eedc;
+        height: 480px;
+        background-image: url('LINKU_I_FOTOS_TËNDE_KËTU');
+        background-size: cover;
+        background-position: center;
+        border-radius: 2px;
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
     }
 
-    .flower-accent {
+    .open-details-btn {
+        margin-top: 20px;
+        background: #16253b;
+        color: #fdfbf7;
+        border: none;
+        width: 90%;
+        padding: 15px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        letter-spacing: 3px;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 2px;
+        transition: background 0.3s;
+    }
+
+    /* FAQJA 2: DETAJET ZYRTARE (image_6.png) */
+    .card-back {
+        background-color: #fdfbf7;
         position: absolute;
+        top: 0;
+        left: 0;
+        transform: rotateY(180deg); /* E kthen që të jetë gati për anën tjetër */
+        padding: 45px 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        border: 1px solid #eeebe3;
+    }
+
+    /* Monogrami Floral */
+    .monogram-container {
         width: 130px;
-        height: 130px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        opacity: 0.95;
-        z-index: 5;
-    }
-    
-    .flower-top {
-        top: -10px;
-        left: -10px;
-        transform: rotate(-15deg);
-    }
-    .flower-bottom {
-        bottom: -15px;
-        right: -10px;
-        transform: rotate(165deg);
-    }
-
-    .flower-svg {
-        width: 140px;
         height: 140px;
-        fill: #f6ebd4;
-        filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+        margin-bottom: 20px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #765c48;
     }
 
-    .title-script {
-        font-family: 'Great Vibes', cursive;
-        font-size: 42px;
-        color: #ebdcb9; 
-        margin: 0 0 30px 0;
-        font-weight: normal;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    .monogram-frame {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #cbbaaa;
+        border-radius: 50px 50px 0 0;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%);
+    }
+
+    .monogram-text {
+        font-size: 24px;
         letter-spacing: 1px;
-    }
-
-    .body-text {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 18px;
-        line-height: 1.6;
-        color: #f1e6cf;
-        margin-bottom: 40px;
+        line-height: 1.2;
+        margin-top: -8px;
         font-weight: 300;
     }
 
-    .details-row {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 16px;
-        color: #ebdcb9;
-        margin-bottom: 45px;
-        letter-spacing: 1px;
+    .monogram-divider {
+        width: 30px;
+        height: 1px;
+        background-color: #cbbaaa;
+        margin: 5px 0;
     }
 
-    .icon-box {
-        font-size: 20px;
-        color: #ebdcb9;
-        display: inline-block;
-        margin: 0 5px;
+    .monogram-leaves {
+        position: absolute;
+        bottom: -8px;
+        font-size: 24px;
+        color: #bfae9e;
+        opacity: 0.7;
     }
 
-    .footer-text {
-        font-family: 'Cormorant Garamond', serif;
-        font-style: italic;
-        font-size: 19px;
-        color: #ebdcb9;
-        margin-top: 10px;
+    .name-heading {
+        font-size: 25px;
+        letter-spacing: 5px;
+        color: #634d3a;
+        text-transform: uppercase;
+        margin: 12px 0 4px 0;
         font-weight: 400;
-        letter-spacing: 0.5px;
     }
 
-    /* DIZAJNI I BUTONAVE */
+    .ampersand-dhe {
+        font-family: 'Alex Brush', cursive;
+        font-size: 24px;
+        color: #8c7662;
+        margin: 3px 0;
+    }
+
+    .wedding-message {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #6e5947;
+        margin: 25px 0;
+        max-width: 95%;
+        font-weight: 400;
+    }
+
+    .date-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        font-size: 26px;
+        color: #634d3a;
+        margin: 10px 0 25px 0;
+        font-weight: 300;
+    }
+
+    .date-divider {
+        width: 1px;
+        height: 30px;
+        background-color: #cbbaaa;
+    }
+
+    .time-label {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        letter-spacing: 3px;
+        color: #7a6654;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+    }
+
+    .time-value {
+        font-size: 15px;
+        letter-spacing: 2px;
+        color: #634d3a;
+        margin-bottom: 25px;
+    }
+
+    .venue-name {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        letter-spacing: 5px;
+        color: #634d3a;
+        text-transform: uppercase;
+        font-weight: 300;
+        margin-bottom: 30px;
+    }
+
+    .family-footer {
+        border-top: 1px dashed #e5dec9;
+        width: 90%;
+        padding-top: 20px;
+        margin-top: 5px;
+    }
+
+    .respekt-text {
+        font-size: 14px;
+        font-style: italic;
+        color: #8c7662;
+        margin: 0 0 4px 0;
+    }
+
+    .family-names {
+        font-size: 17px;
+        letter-spacing: 2px;
+        color: #523f2f;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    /* SEKSIONI I BUTONAVE POSHTË SJELLJES */
     .btn-container {
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: 12px;
         align-items: center;
         width: 100%;
-        margin-top: 35px;
+        margin-top: 25px;
     }
 
     .action-btn {
@@ -267,49 +378,40 @@
         justify-content: center;
         width: 90%;
         max-width: 290px;
-        padding: 15px 20px;
+        padding: 13px 20px;
         text-decoration: none;
         font-family: 'Montserrat', sans-serif;
         font-size: 11px;
         letter-spacing: 2px;
         font-weight: bold;
-        border-radius: 3px;
+        border-radius: 2px;
         text-transform: uppercase;
-        transition: all 0.3s ease;
         box-sizing: border-box;
     }
 
     .maps-btn {
         background: transparent;
-        color: #4a1220;
-        border: 1px solid #4a1220;
+        color: #16253b;
+        border: 1px solid #16253b;
     }
 
     .rsvp-btn {
-        background: #4a1220;
+        background: #16253b;
         color: #fdfbf7;
-        border: 1px solid #4a1220;
-        box-shadow: 0 5px 15px rgba(74, 18, 32, 0.15);
+        border: 1px solid #16253b;
+        box-shadow: 0 4px 12px rgba(22, 37, 59, 0.15);
     }
 
-    .action-btn:active {
-        transform: scale(0.98);
-    }
-
+    /* Animacioni Hyrës */
     @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(40px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 </style>
 </head>
 <body>
 
+<!-- ZARFI NAVY -->
 <div class="envelope-section" id="envSection">
     <div class="envelope-wrapper" onclick="openEnvelope()">
         <div class="envelope-flap"></div>
@@ -317,62 +419,71 @@
         <div class="wax-seal"></div>
         
         <div class="preview-card">
-            <span>Kanitas Henna</span>
+            <span>Kanita & Ernad</span>
         </div>
         
-        <div class="hint-text" id="hint">Kliko mbi zarf për ta hapur ✨</div>
+        <div class="hint-text" id="hint">Kliko mbi zarf për ta hapur ftesën ✨</div>
     </div>
 </div>
 
+<!-- CONTAINER-I KRYESOR ME EFEKT FLIP 3D -->
 <div class="main-invitation-container" id="invContainer">
-    <div class="invitation-card">
+    <div class="flip-card-inner" id="flipCard">
         
-        <div class="flower-accent flower-top">
-            <svg class="flower-svg" viewBox="0 0 100 100">
-                <path d="M50,50 C40,30 25,25 35,15 C45,5 50,25 50,50 C50,25 55,5 65,15 C75,25 60,30 50,50 C60,60 75,75 65,85 C55,95 50,75 50,50 C50,75 45,95 35,85 C25,75 40,60 50,50 Z" opacity="0.85"/>
-                <circle cx="50" cy="50" r="3" fill="#caa052"/>
-            </svg>
+        <!-- PARAPAMJA: FOTO KOPERTINË (Faqja 1) -->
+        <div class="card-front">
+            <div class="photo-wrapper"></div>
+            <button class="open-details-btn" onclick="flipToDetails()">✨ HAP FTESËN ZYRTARE</button>
         </div>
 
-        <div class="burgundy-arch">
-            <h1 class="title-script">Kanitas Henna</h1>
+        <!-- PRAPAMJA: DETAIL-ET E PLOTA (Faqja 2) -->
+        <div class="card-back">
+            <div class="monogram-container">
+                <div class="monogram-frame"></div>
+                <div class="monogram-text">E</div>
+                <div class="monogram-divider"></div>
+                <div class="monogram-text">K</div>
+                <div class="monogram-leaves">🌸🍃</div>
+            </div>
+
+            <h1 class="name-heading">Kanita</h1>
+            <div class="ampersand-dhe">dhe</div>
+            <h1 class="name-heading">Ernad</h1>
             
-            <p class="body-text">
-                Një natë dedikuar traditës dhe memories.<br>
-                Jeni të ftuar të festojmë bashkë në Natën time<br>
-                të Kënës.
+            <p class="wedding-message">
+                Me kënaqësi ju ftojmë të merni pjesë në gëzimin tonë familjarë.<br>
+                Prania juaj do ta bëjë këtë ditë më të veçant.
             </p>
             
-            <div class="details-row">
-                <span><span class="icon-box">📍</span> Korabi</span>
-                <span style="opacity: 0.5;">|</span>
-                <span><span class="icon-box">🕒</span> 18:00</span>
-                <span style="opacity: 0.5;">|</span>
-                <span><span class="icon-box">📅</span> 14/08/26</span>
+            <div class="date-row">
+                <span>18</span>
+                <div class="date-divider"></div>
+                <span>08</span>
+                <div class="date-divider"></div>
+                <span>26</span>
             </div>
             
-            <p class="footer-text">Prezenca juaj do të na gëzonte shumë</p>
+            <div class="time-label">Ardhja e të ftuarve</div>
+            <div class="time-value">19:00</div>
+            
+            <div class="venue-name">Alikas</div>
+
+            <div class="family-footer">
+                <p class="respekt-text">Me respekt familjet</p>
+                <p class="family-names">Bakiu & Halimi</p>
+            </div>
+
+            <!-- BUTONAT LOKACIONI DHE RSVP BRENDA DETUARA -->
+            <div class="btn-container">
+                <a class="action-btn maps-btn" href="https://maps.app.goo.gl/9z6ZfV9XbyZ6m78B8" target="_blank">
+                    📍 LOKACIONI (ALIKAS)
+                </a>
+                <a class="action-btn rsvp-btn" href="https://wa.me/38978651461?text=Përshëndetje!%20Konfirmojmë%20me%20kënaqësi%20pjesëmarrjen%20tonë%20në%20dasmën%20tuaj%20çifti%20Kanita%20%26%20Ernad%20💍" target="_blank">
+                    ✉️ KONFIRMO PJESËMARRJEN
+                </a>
+            </div>
         </div>
 
-        <div class="flower-accent flower-bottom">
-            <svg class="flower-svg" viewBox="0 0 100 100">
-                <path d="M50,50 C40,30 25,25 35,15 C45,5 50,25 50,50 C50,25 55,5 65,15 C75,25 60,30 50,50 C60,60 75,75 65,85 C55,95 50,75 50,50 C50,75 45,95 35,85 C25,75 40,60 50,50 Z" opacity="0.85"/>
-                <circle cx="50" cy="50" r="3" fill="#caa052"/>
-            </svg>
-        </div>
-
-    </div>
-
-    <!-- BUTONAT E PËRDITËSUAR FUNKSIONALË -->
-    <div class="btn-container">
-        <!-- Linku i saktë i Google Maps -->
-        <a class="action-btn maps-btn" href="https://maps.app.goo.gl/oe3QdvjEYmxXy6WFA?g_st=ic" target="_blank">
-            📍 HAP LOKACIONIN NË HARTË
-        </a>
-        <!-- Numri i ri në WhatsApp me tekst konfirmimi -->
-        <a class="action-btn rsvp-btn" href="https://wa.me/38978651461?text=Përshëndetje!%20Konfirmoj%20me%20kënaqësi%20pjesëmarrjen%20në%20Kanitas%20Henna%20✨" target="_blank">
-            ✉️ KONFIRMO PJESËMARRJEN
-        </a>
     </div>
 </div>
 
@@ -388,8 +499,13 @@ function openEnvelope() {
         
         setTimeout(() => {
             invContainer.style.opacity = '1';
+            invContainer.style.animation = 'fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
         }, 50);
     }, 700);
+}
+
+function flipToDetails() {
+    document.getElementById('flipCard').classList.add('flipped');
 }
 </script>
 
