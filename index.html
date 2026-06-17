@@ -32,13 +32,13 @@
         position: relative;
         width: 320px;
         height: 220px;
-        background-color: #1e2e47; /* Ngjyra mat Navy ekzakt si në foto */
+        background-color: #1e2e47; /* Navy Mat si në foto */
         cursor: pointer;
         border-radius: 2px;
         box-shadow: 0 12px 28px rgba(0,0,0,0.25);
     }
 
-    /* Flapi Trekëndosh i Sipërm (Saktësisht si në foton tuaj) */
+    /* Flapi Trekëndosh i Sipërm (Saktësisht si në foto) */
     .envelope-wrapper::before {
         content: "";
         position: absolute;
@@ -48,7 +48,7 @@
         height: 0;
         border-left: 160px solid transparent;
         border-right: 160px solid transparent;
-        border-top: 130px solid #243754; /* Prerja e thellë trekëndore */
+        border-top: 130px solid #243754; 
         transform-origin: top;
         transition: transform 0.5s ease;
         z-index: 4;
@@ -104,32 +104,34 @@
         color: #7a6553;
     }
 
-    /* VULA E PASTER E DYLLIT (Gold Wax Seal si në foto) */
+    /* VULA REALISTIKE E DYLLIT (Gold Wax Seal pa emoji) */
     .wax-seal {
         position: absolute;
-        top: 102px; /* Pozicionuar ekzakt mbi majën e trekëndëshit */
+        top: 102px; 
         left: 133px;
         width: 54px;
         height: 54px;
-        border-radius: 50% 48% 52% 49%; /* Formë organike dhe jo rreth perfekt */
-        background: radial-gradient(circle at 35% 35%, #dfba73, #c59b4e 70%, #a07833);
+        border-radius: 48% 52% 49% 51%; /* Formë organike dylli e shkrirë */
+        background: radial-gradient(circle at 35% 35%, #e2bf7d, #c59b4e 70%, #9e7631);
         z-index: 5;
         box-shadow: 
-            0 4px 8px rgba(0,0,0,0.35), 
-            inset 0 1px 2px rgba(255,255,255,0.3);
+            0 4px 10px rgba(0,0,0,0.35), 
+            inset 0 1px 2px rgba(255,255,255,0.4);
         display: flex;
         align-items: center;
         justify-content: center;
         transition: opacity 0.25s ease, transform 0.2s ease;
     }
 
-    /* Emblema organike e stampuar brenda dyllit (pa numra/pa datë) */
+    /* Unaza e brendshme e stampuar (Efekti 3D i shtypjes pa lule fake) */
     .wax-seal::before {
-        content: "✿"; /* Një detaj i imët luleje në qendër si në foto */
-        font-size: 20px;
-        color: #8c6621;
-        opacity: 0.6;
-        text-shadow: -1px -1px 1px rgba(0,0,0,0.3), 1px 1px 1px rgba(255,255,255,0.3);
+        content: "";
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid rgba(140, 102, 33, 0.4);
+        background: radial-gradient(circle, rgba(197,155,78,0.2) 0%, rgba(140,102,33,0.3) 100%);
+        box-shadow: inset 1px 1px 3px rgba(0,0,0,0.2), 1px 1px 1px rgba(255,255,255,0.2);
     }
 
     .hint-text {
@@ -160,7 +162,7 @@
         transform: scale(0.9);
     }
 
-    /* Seksioni i ftesës (Dizajni i saktë nga imazhi yt) */
+    /* Seksioni i ftesës */
     .details-section {
         width: 100%;
         max-width: 450px;
@@ -281,6 +283,7 @@
 
 <div class="envelope-section" id="envSection">
     <div class="envelope-wrapper" onclick="openEnvelope()">
+        <!-- Vula e pastër prej ari me stampim 3D -->
         <div class="wax-seal"></div>
         <div class="preview-letter">
             <h2>KANITA</h2>
