@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ftesë Dasme - Kanita & Ernad</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Alex+Brush&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Alex+Brush&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
     body {
         margin: 0;
         padding: 0;
-        background-color: #f7f5f0; 
+        background-color: #f7f5f0; /* Sfondi i hapur ashtu si te imazhi */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -18,7 +18,7 @@
         font-family: 'Cormorant Garamond', serif;
     }
 
-    /* SEKSIONI I ZARFIT */
+    /* SEKSIONI I ZARFIT NAVY */
     .envelope-section {
         width: 100%;
         height: 100vh;
@@ -34,7 +34,7 @@
         position: relative;
         width: 330px;
         height: 230px;
-        background-color: #16253b; 
+        background-color: #16253b; /* Kaltër e errët / Navy */
         cursor: pointer;
         border-radius: 3px;
         box-shadow: 0 15px 35px rgba(0,0,0,0.25);
@@ -144,82 +144,25 @@
         pointer-events: none;
     }
 
-    /* STRUKTURA KRYESORE 3D FLIP */
+    /* KARTA E PLOTË E FTESËS (Sipas image_6.png) */
     .main-invitation-container {
         width: 100%;
-        max-width: 420px;
+        max-width: 430px;
         display: none; 
         opacity: 0;
         box-sizing: border-box;
-        padding: 20px 15px 40px 15px;
-        perspective: 1000px; /* Mundëson efektin 3D */
+        padding: 30px 20px 60px 20px;
+        animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
 
-    .flip-card-inner {
+    .invitation-card {
+        width: 100%;
+        background-color: #fdfbf7; 
         position: relative;
-        width: 100%;
-        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        transform-style: preserve-3d;
-    }
-
-    /* Kur shtohet kjo klasë nga JS, karta rrotullohet */
-    .flip-card-inner.flipped {
-        transform: rotateY(180deg);
-    }
-
-    .card-front, .card-back {
-        width: 100%;
-        backface-visibility: hidden; /* Fsheh pjesën e prapme gjatë rrotullimit */
-        border-radius: 4px;
-        box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+        padding: 50px 30px;
         box-sizing: border-box;
-    }
-
-    /* FAQJA 1: KOPERTINA ME FOTO (image_7.png) */
-    .card-front {
-        background-color: #fdfbf7;
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 1px solid #eeebe3;
-    }
-
-    .photo-wrapper {
-        width: 100%;
-        height: 480px;
-        background-image: url('LINKU_I_FOTOS_TËNDE_KËTU');
-        background-size: cover;
-        background-position: center;
         border-radius: 2px;
-        box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
-    }
-
-    .open-details-btn {
-        margin-top: 20px;
-        background: #16253b;
-        color: #fdfbf7;
-        border: none;
-        width: 90%;
-        padding: 15px;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 11px;
-        letter-spacing: 3px;
-        font-weight: 600;
-        text-transform: uppercase;
-        cursor: pointer;
-        border-radius: 2px;
-        transition: background 0.3s;
-    }
-
-    /* FAQJA 2: DETAJET ZYRTARE (image_6.png) */
-    .card-back {
-        background-color: #fdfbf7;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: rotateY(180deg); /* E kthen që të jetë gati për anën tjetër */
-        padding: 45px 25px;
+        box-shadow: 0 15px 45px rgba(0,0,0,0.08);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -227,11 +170,11 @@
         border: 1px solid #eeebe3;
     }
 
-    /* Monogrami Floral */
+    /* Monogrami Floral Qendror i Sipërm */
     .monogram-container {
-        width: 130px;
-        height: 140px;
-        margin-bottom: 20px;
+        width: 140px;
+        height: 150px;
+        margin-bottom: 25px;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -250,86 +193,97 @@
     }
 
     .monogram-text {
-        font-size: 24px;
+        font-size: 26px;
         letter-spacing: 1px;
         line-height: 1.2;
-        margin-top: -8px;
+        margin-top: -10px;
+        z-index: 2;
         font-weight: 300;
     }
 
     .monogram-divider {
-        width: 30px;
+        width: 35px;
         height: 1px;
         background-color: #cbbaaa;
-        margin: 5px 0;
+        margin: 6px 0;
+        z-index: 2;
     }
 
+    /* Dekorimi i luleve të skicuara rreth monogramit */
     .monogram-leaves {
         position: absolute;
-        bottom: -8px;
-        font-size: 24px;
+        bottom: -10px;
+        font-size: 28px;
         color: #bfae9e;
         opacity: 0.7;
     }
 
+    /* Emrat Kryesorë */
     .name-heading {
-        font-size: 25px;
-        letter-spacing: 5px;
+        font-size: 26px;
+        letter-spacing: 6px;
         color: #634d3a;
         text-transform: uppercase;
-        margin: 12px 0 4px 0;
+        margin: 15px 0 5px 0;
         font-weight: 400;
     }
 
     .ampersand-dhe {
         font-family: 'Alex Brush', cursive;
-        font-size: 24px;
+        font-size: 26px;
         color: #8c7662;
-        margin: 3px 0;
+        margin: 5px 0;
+        font-style: italic;
     }
 
+    /* Teksti i Ri i Ftesës */
     .wedding-message {
-        font-size: 16px;
-        line-height: 1.6;
+        font-size: 17px;
+        line-height: 1.7;
         color: #6e5947;
-        margin: 25px 0;
-        max-width: 95%;
+        margin: 35px 0;
+        max-width: 90%;
         font-weight: 400;
+        letter-spacing: 0.3px;
     }
 
+    /* Data "18 | 08 | 26" */
     .date-row {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 15px;
-        font-size: 26px;
+        gap: 20px;
+        font-size: 28px;
         color: #634d3a;
-        margin: 10px 0 25px 0;
+        margin: 10px 0 30px 0;
         font-weight: 300;
+        letter-spacing: 2px;
     }
 
     .date-divider {
         width: 1px;
-        height: 30px;
+        height: 35px;
         background-color: #cbbaaa;
     }
 
+    /* Ora dhe Detajet */
     .time-label {
         font-family: 'Montserrat', sans-serif;
-        font-size: 10px;
+        font-size: 11px;
         letter-spacing: 3px;
         color: #7a6654;
         text-transform: uppercase;
-        margin-bottom: 4px;
+        margin-bottom: 5px;
     }
 
     .time-value {
         font-size: 15px;
         letter-spacing: 2px;
         color: #634d3a;
-        margin-bottom: 25px;
+        margin-bottom: 35px;
     }
 
+    /* Lokacioni */
     .venue-name {
         font-family: 'Montserrat', sans-serif;
         font-size: 12px;
@@ -337,39 +291,40 @@
         color: #634d3a;
         text-transform: uppercase;
         font-weight: 300;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
 
+    /* Pjesa e Re: Familjet dhe Respekti */
     .family-footer {
         border-top: 1px dashed #e5dec9;
-        width: 90%;
-        padding-top: 20px;
-        margin-top: 5px;
+        width: 85%;
+        padding-top: 25px;
+        margin-top: 10px;
     }
 
     .respekt-text {
-        font-size: 14px;
+        font-size: 15px;
         font-style: italic;
         color: #8c7662;
-        margin: 0 0 4px 0;
+        margin: 0 0 5px 0;
     }
 
     .family-names {
-        font-size: 17px;
+        font-size: 18px;
         letter-spacing: 2px;
         color: #523f2f;
         font-weight: 600;
         margin: 0;
     }
 
-    /* SEKSIONI I BUTONAVE POSHTË SJELLJES */
+    /* BUTONAT INTERAKTIVË POSHTË FTESËS */
     .btn-container {
         display: flex;
         flex-direction: column;
         gap: 12px;
         align-items: center;
         width: 100%;
-        margin-top: 25px;
+        margin-top: 30px;
     }
 
     .action-btn {
@@ -377,8 +332,8 @@
         align-items: center;
         justify-content: center;
         width: 90%;
-        max-width: 290px;
-        padding: 13px 20px;
+        max-width: 300px;
+        padding: 14px 20px;
         text-decoration: none;
         font-family: 'Montserrat', sans-serif;
         font-size: 11px;
@@ -386,6 +341,7 @@
         font-weight: bold;
         border-radius: 2px;
         text-transform: uppercase;
+        transition: all 0.3s ease;
         box-sizing: border-box;
     }
 
@@ -402,16 +358,21 @@
         box-shadow: 0 4px 12px rgba(22, 37, 59, 0.15);
     }
 
-    /* Animacioni Hyrës */
     @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(40px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 </style>
 </head>
 <body>
 
-<!-- ZARFI NAVY -->
+<!-- ZARFI NAVY KRYESOR -->
 <div class="envelope-section" id="envSection">
     <div class="envelope-wrapper" onclick="openEnvelope()">
         <div class="envelope-flap"></div>
@@ -426,64 +387,64 @@
     </div>
 </div>
 
-<!-- CONTAINER-I KRYESOR ME EFEKT FLIP 3D -->
+<!-- KARTA E DASMËS E PËRDITËSUAR (Sipas image_6.png) -->
 <div class="main-invitation-container" id="invContainer">
-    <div class="flip-card-inner" id="flipCard">
+    <div class="invitation-card">
         
-        <!-- PARAPAMJA: FOTO KOPERTINË (Faqja 1) -->
-        <div class="card-front">
-            <div class="photo-wrapper"></div>
-            <button class="open-details-btn" onclick="flipToDetails()">✨ HAP FTESËN ZYRTARE</button>
+        <!-- Monogrami E / K me rrethin floral -->
+        <div class="monogram-container">
+            <div class="monogram-frame"></div>
+            <div class="monogram-text">E</div>
+            <div class="monogram-divider"></div>
+            <div class="monogram-text">K</div>
+            <div class="monogram-leaves">🌸🍃</div>
         </div>
 
-        <!-- PRAPAMJA: DETAIL-ET E PLOTA (Faqja 2) -->
-        <div class="card-back">
-            <div class="monogram-container">
-                <div class="monogram-frame"></div>
-                <div class="monogram-text">E</div>
-                <div class="monogram-divider"></div>
-                <div class="monogram-text">K</div>
-                <div class="monogram-leaves">🌸🍃</div>
-            </div>
+        <!-- Emrat e çiftit -->
+        <h1 class="name-heading">Kanita</h1>
+        <div class="ampersand-dhe">dhe</div>
+        <h1 class="name-heading">Ernad</h1>
+        
+        <!-- TEKSTI I RI I FTESËS SË BASHKUAR -->
+        <p class="wedding-message">
+            Me kënaqësi ju ftojmë të merni pjesë në gëzimin tonë familjarë. <br>
+            Prania juaj do ta bëjë këtë ditë më të veçant.
+        </p>
+        
+        <!-- Data e Dasmës -->
+        <div class="date-row">
+            <span>18</span>
+            <div class="date-divider"></div>
+            <span>08</span>
+            <div class="date-divider"></div>
+            <span>26</span>
+        </div>
+        
+        <!-- Ora e Ardhjes -->
+        <div class="time-label">Ardhja e të ftuarve</div>
+        <div class="time-value">19:00</div>
+        
+        <!-- Salla/Lokacioni -->
+        <div class="venue-name">Alikas</div>
 
-            <h1 class="name-heading">Kanita</h1>
-            <div class="ampersand-dhe">dhe</div>
-            <h1 class="name-heading">Ernad</h1>
-            
-            <p class="wedding-message">
-                Me kënaqësi ju ftojmë të merni pjesë në gëzimin tonë familjarë.<br>
-                Prania juaj do ta bëjë këtë ditë më të veçant.
-            </p>
-            
-            <div class="date-row">
-                <span>18</span>
-                <div class="date-divider"></div>
-                <span>08</span>
-                <div class="date-divider"></div>
-                <span>26</span>
-            </div>
-            
-            <div class="time-label">Ardhja e të ftuarve</div>
-            <div class="time-value">19:00</div>
-            
-            <div class="venue-name">Alikas</div>
-
-            <div class="family-footer">
-                <p class="respekt-text">Me respekt familjet</p>
-                <p class="family-names">Bakiu & Halimi</p>
-            </div>
-
-            <!-- BUTONAT LOKACIONI DHE RSVP BRENDA DETUARA -->
-            <div class="btn-container">
-                <a class="action-btn maps-btn" href="https://maps.app.goo.gl/9z6ZfV9XbyZ6m78B8" target="_blank">
-                    📍 LOKACIONI (ALIKAS)
-                </a>
-                <a class="action-btn rsvp-btn" href="https://wa.me/38978651461?text=Përshëndetje!%20Konfirmojmë%20me%20kënaqësi%20pjesëmarrjen%20tonë%20në%20dasmën%20tuaj%20çifti%20Kanita%20%26%20Ernad%20💍" target="_blank">
-                    ✉️ KONFIRMO PJESËMARRJEN
-                </a>
-            </div>
+        <!-- TEKSTI I RI: FAMILJET DHE RESPEKTI -->
+        <div class="family-footer">
+            <p class="respekt-text">Me respekt familjet</p>
+            <p class="family-names">Bakiu & Halimi</p>
         </div>
 
+    </div>
+
+    <!-- BUTONAT LOKACIONI ALIKAS DHE RSVP -->
+    <div class="btn-container">
+        <!-- Koordinatat e Alikas në Google Maps -->
+        <a class="action-btn maps-btn" href="https://maps.app.goo.gl/9z6ZfV9XbyZ6m78B8" target="_blank">
+            📍 LOKACIONI (ALIKAS)
+        </a>
+        <!-- Konfirmimi në WhatsApp për Dasmën -->
+        <a class="action-btn rsvp-btn" href="https://wa.me/38978651461?text=Përshëndetje!%20Konfirmojmë%20me%20kënaqësi%20pjesëmarrjen%20tonë%20në%20dasmën%20tuaj%20çifti%20Kanita%20%26%20Ernad%20💍" target="_blank">
+            ✉️ KONFIRMO PJESËMARRJEN
+        </a>
     </div>
 </div>
 
@@ -499,13 +460,8 @@ function openEnvelope() {
         
         setTimeout(() => {
             invContainer.style.opacity = '1';
-            invContainer.style.animation = 'fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
         }, 50);
     }, 700);
-}
-
-function flipToDetails() {
-    document.getElementById('flipCard').classList.add('flipped');
 }
 </script>
 
