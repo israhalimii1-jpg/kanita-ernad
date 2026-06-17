@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ftesë Dasme - Kanita & Ernad</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Alex+Brush&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Alex+Brush&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
     body {
         margin: 0;
         padding: 0;
-        background-color: #f7f5f0; /* Sfondi i hapur ashtu si te imazhi */
+        background-color: #f6f4f0; /* Ngjyra kremoze e ftesës origjinale */
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
         min-height: 100vh;
         overflow-x: hidden;
@@ -34,7 +34,7 @@
         position: relative;
         width: 330px;
         height: 230px;
-        background-color: #16253b; /* Kaltër e errët / Navy */
+        background-color: #16253b; 
         cursor: pointer;
         border-radius: 3px;
         box-shadow: 0 15px 35px rgba(0,0,0,0.25);
@@ -115,7 +115,6 @@
         font-weight: bold;
         color: #5c4314;
         opacity: 0.7;
-        letter-spacing: 0.5px;
     }
 
     .hint-text {
@@ -128,112 +127,330 @@
         color: #59677a;
     }
 
-    .envelope-wrapper.open .envelope-flap {
-        transform: rotateX(180deg);
-        z-index: 1;
-    }
+    .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; }
+    .envelope-wrapper.open .preview-card { transform: translateY(-120px) scale(0.8); opacity: 0; }
+    .envelope-wrapper.open .wax-seal { opacity: 0; transform: scale(0.8); pointer-events: none; }
 
-    .envelope-wrapper.open .preview-card {
-        transform: translateY(-120px) scale(0.8);
-        opacity: 0;
-    }
-
-    .envelope-wrapper.open .wax-seal {
-        opacity: 0;
-        transform: scale(0.8);
-        pointer-events: none;
-    }
-
-    /* KARTA E PLOTË E FTESËS (Sipas image_6.png) */
+    /* KARTA E FTESËS (Pas hapjes së zarfit) */
     .main-invitation-container {
         width: 100%;
-        max-width: 430px;
+        max-width: 420px;
         display: none; 
         opacity: 0;
         box-sizing: border-box;
-        padding: 30px 20px 60px 20px;
-        animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        padding: 30px 20px;
     }
 
-    .invitation-card {
-        width: 100%;
-        background-color: #fdfbf7; 
-        position: relative;
-        padding: 50px 30px;
-        box-sizing: border-box;
+    .card-body {
+        background-color: #f6f4f0;
+        border: 1px solid #e1ded6;
         border-radius: 2px;
-        box-shadow: 0 15px 45px rgba(0,0,0,0.08);
+        padding: 45px 25px;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        border: 1px solid #eeebe3;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
-    /* Monogrami Floral Qendror i Sipërm */
-    .monogram-container {
-        width: 140px;
-        height: 150px;
-        margin-bottom: 25px;
+    /* MONOGRAMI ME KORNIZË DHE LULE VETË-VIZATUARA (SVG) */
+    .monogram-wrapper {
+        width: 170px;
+        height: 170px;
         position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+    }
+
+    .monogram-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .monogram-text-box {
+        position: relative;
+        z-index: 2;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        color: #765c48;
+        margin-top: -15px;
     }
 
-    .monogram-frame {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border: 1px solid #cbbaaa;
-        border-radius: 50px 50px 0 0;
-        clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%);
-    }
-
-    .monogram-text {
+    .monogram-letter {
         font-size: 26px;
-        letter-spacing: 1px;
-        line-height: 1.2;
-        margin-top: -10px;
-        z-index: 2;
+        color: #5a493a;
         font-weight: 300;
+        letter-spacing: 1px;
+        line-height: 1.1;
     }
 
-    .monogram-divider {
+    .monogram-line {
         width: 35px;
         height: 1px;
-        background-color: #cbbaaa;
+        background-color: #5a493a;
         margin: 6px 0;
-        z-index: 2;
-    }
-
-    /* Dekorimi i luleve të skicuara rreth monogramit */
-    .monogram-leaves {
-        position: absolute;
-        bottom: -10px;
-        font-size: 28px;
-        color: #bfae9e;
         opacity: 0.7;
     }
 
-    /* Emrat Kryesorë */
+    /* DIZAJNI I TEKSTIT SIPAS IMAGE_9.PNG */
     .name-heading {
         font-size: 26px;
         letter-spacing: 6px;
-        color: #634d3a;
+        color: #5a493a;
         text-transform: uppercase;
-        margin: 15px 0 5px 0;
+        margin: 15px 0 3px 0;
         font-weight: 400;
     }
 
     .ampersand-dhe {
         font-family: 'Alex Brush', cursive;
-        font-size: 26px;
+        font-size: 25px;
         color: #8c7662;
         margin: 5px 0;
-        font-style: italic;
     }
 
-    /* Teksti i Ri i Ftesës */
+    .main-invite-line {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 13px;
+        letter-spacing: 4px;
+        color: #6a5a4a;
+        text-transform: uppercase;
+        margin: 35px 0 25px 0;
+        font-weight: 500;
+    }
+
+    /* DATA E STRUKTURUAR */
+    .date-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        font-size: 28px;
+        color: #5a493a;
+        margin: 10px 0 30px 0;
+        font-weight: 300;
+    }
+
+    .date-line-divider {
+        width: 1px;
+        height: 28px;
+        background-color: #cbbaaa;
+    }
+
+    .info-label {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        letter-spacing: 3px;
+        color: #7a6654;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+    }
+
+    .info-value {
+        font-size: 15px;
+        letter-spacing: 2px;
+        color: #5a493a;
+        margin-bottom: 30px;
+    }
+
+    .venue-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        letter-spacing: 5px;
+        color: #5a493a;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin-bottom: 35px;
+    }
+
+    /* SHTESA E RE E TEKSTIT TË KËRKUAR EXTREMELY EXACT */
+    .custom-added-section {
+        border-top: 1px dashed #dedbd0;
+        width: 95%;
+        margin-top: 5px;
+        padding-top: 25px;
+        box-sizing: border-box;
+    }
+
+    .new-wedding-paragraph {
+        font-size: 17px;
+        line-height: 1.6;
+        color: #5a493a;
+        margin: 0 0 25px 0;
+        font-weight: 400;
+    }
+
+    .respect-footer-label {
+        font-size: 14px;
+        font-style: italic;
+        color: #8c7662;
+        margin: 0 0 6px 0;
+    }
+
+    .bold-family-names {
+        font-size: 18px;
+        letter-spacing: 1.5px;
+        color: #4a3b2e;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    /* BUTONAT INTERAKTIVË */
+    .btn-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        width: 100%;
+        margin-top: 35px;
+    }
+
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        max-width: 290px;
+        padding: 13px 20px;
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        letter-spacing: 2px;
+        font-weight: bold;
+        border-radius: 2px;
+        text-transform: uppercase;
+        box-sizing: border-box;
+    }
+
+    .maps-btn {
+        background: transparent;
+        color: #16253b;
+        border: 1px solid #16253b;
+    }
+
+    .rsvp-btn {
+        background: #16253b;
+        color: #fdfbf7;
+        border: 1px solid #16253b;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+
+<!-- ZARFI NAVY -->
+<div class="envelope-section" id="envSection">
+    <div class="envelope-wrapper" onclick="openEnvelope()">
+        <div class="envelope-flap"></div>
+        <div class="envelope-base"></div>
+        <div class="wax-seal"></div>
+        
+        <div class="preview-card">
+            <span>Kanita & Ernad</span>
+        </div>
+        
+        <div class="hint-text" id="hint">Kliko mbi zarf për ta hapur ftesën ✨</div>
+    </div>
+</div>
+
+<!-- KARTA E PLOTË E RIKRIJUAR PA ASNJË FOTO -->
+<div class="main-invitation-container" id="invContainer">
+    <div class="card-body">
+        
+        <!-- Monogrami i vizatuar me saktësi si në skicë -->
+        <div class="monogram-wrapper">
+            <svg class="monogram-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Korniza e Sipërme klasike me harqe -->
+                <path d="M60 40 C 60 40, 63 32, 75 32 C 87 32, 85 36, 100 36 C 115 36, 113 32, 125 32 C 137 32, 140 40, 140 40 L 150 55 L 150 90 C 150 130, 100 160, 100 160 C 100 160, 50 130, 50 90 L 50 55 Z" stroke="#5a493a" stroke-width="1.2" stroke-linecap="round"/>
+                <!-- Harku i dytë i hollë i brendshëm sipër -->
+                <path d="M65 43 C 65 43, 68 36, 76 36 C 84 36, 86 39, 100 39 C 114 39, 116 36, 124 36 C 132 36, 135 43, 135 43" stroke="#5a493a" stroke-width="0.6"/>
+                
+                <!-- Degët dhe Lulet Skicë në Anën e Majtë -->
+                <path d="M 45 105 C 38 85, 48 65, 58 50 M 42 90 Q 32 82 40 78 M 46 75 Q 36 65 46 62" stroke="#5a493a" stroke-width="1" stroke-linecap="round"/>
+                <!-- Degët dhe Lulet Skicë në Anën e Djathtë -->
+                <path d="M 155 105 C 162 85, 152 65, 142 50 M 158 90 Q 168 82 160 78 M 154 75 Q 164 65 154 62" stroke="#5a493a" stroke-width="1" stroke-linecap="round"/>
+                
+                <!-- Lulet kryesore në fund të kornizës -->
+                <circle cx="100" cy="158" r="7" stroke="#5a493a" stroke-width="1" fill="#f6f4f0"/>
+                <circle cx="88" cy="150" r="5" stroke="#5a493a" stroke-width="0.9" fill="#f6f4f0"/>
+                <circle cx="112" cy="150" r="5" stroke="#5a493a" stroke-width="0.9" fill="#f6f4f0"/>
+                <path d="M 80 140 Q 100 165 120 140" stroke="#5a493a" stroke-width="1"/>
+            </svg>
+            <div class="monogram-text-box">
+                <span class="monogram-letter">E</span>
+                <div class="monogram-line"></div>
+                <span class="monogram-letter">K</span>
+            </div>
+        </div>
+
+        <h1 class="name-heading">Kanita</h1>
+        <div class="ampersand-dhe">dhe</div>
+        <h1 class="name-heading">Ernad</h1>
+        
+        <div class="main-invite-line">Ju ftojmë me gëzim në festën e dasmës sonë.</div>
+        
+        <div class="date-container">
+            <span>18</span>
+            <div class="date-line-divider"></div>
+            <span>08</span>
+            <div class="date-line-divider"></div>
+            <span>26</span>
+        </div>
+        
+        <div class="info-label">Ardhja e të ftuarve</div>
+        <div class="info-value">19:00</div>
+        
+        <div class="venue-title">Alikas</div>
+
+        <!-- SEKSIONI I RI I SHTUAR SIPAS KËRKESËS TËNDE -->
+        <div class="custom-added-section">
+            <p class="new-wedding-paragraph">
+                Me kënaqësi ju ftojmë të merni pjesë në gëzimin tonë familjarë.<br>
+                Prania juaj do ta bëjë këtë ditë më të veçant.
+            </p>
+            <p class="respect-footer-label">Me respekt familjet</p>
+            <p class="bold-family-names">Bakiu & Halimi</p>
+        </div>
+
+        <!-- BUTONAT MAPS DHE RSVP -->
+        <div class="btn-container">
+            <a class="action-btn maps-btn" href="https://maps.app.goo.gl/9z6ZfV9XbyZ6m78B8" target="_blank">
+                📍 LOKACIONI (ALIKAS)
+            </a>
+            <a class="action-btn rsvp-btn" href="https://wa.me/38978651461?text=Përshëndetje!%20Konfirmojmë%20me%20kënaqësi%20pjesëmarrjen%20tonë%20në%20dasmën%20tuaj%20çifti%20Kanita%20%26%20Ernad%20💍" target="_blank">
+                ✉️ KONFIRMO PJESËMARRJEN
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+function openEnvelope() {
+    document.querySelector('.envelope-wrapper').classList.add('open');
+    document.getElementById('hint').style.display = 'none';
+    
+    setTimeout(() => {
+        document.getElementById('envSection').style.display = 'none';
+        const invContainer = document.getElementById('invContainer');
+        invContainer.style.display = 'block';
+        
+        setTimeout(() => {
+            invContainer.style.opacity = '1';
+            invContainer.style.animation = 'fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+        }, 50);
+    }, 700);
+}
+</script>
+
+</body>
+</html>
