@@ -3,122 +3,324 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kanita & Ernad</title>
-
+<title>Ftesë Dasme - Kanita & Ernad</title>
 <style>
-body{
-    margin:0;
-    background:#f7f3ef;
-    color:#6b5448;
-    font-family:Georgia, serif;
-    text-align:center;
-}
+    :root {
+        --bg-color: #fcfbfa;
+        --card-bg: #f7f3ef;
+        --text-color: #4a3b32;
+        --text-light: #8c7a6b;
+        --navy-envelope: #1b263b;
+        --navy-dark: #0d1b2a;
+        --gold: #d4af37;
+    }
 
-.container{
-    max-width:600px;
-    margin:auto;
-    padding:50px 20px;
-}
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Georgia', serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
 
-.monogram{
-    font-size:60px;
-    line-height:1.2;
-}
+    /* Seksioni i Zarfit */
+    .envelope-section {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background-color: var(--bg-color);
+    }
 
-.names{
-    margin-top:40px;
-}
+    .envelope-wrapper {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        background: var(--navy-envelope);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        cursor: pointer;
+        perspective: 1000px;
+    }
 
-.names h1{
-    letter-spacing:8px;
-    font-size:42px;
-    font-weight:normal;
-    margin:0;
-}
+    /* Flap i Zarfit (Pjesa e sipërme) */
+    .envelope-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        border-top: 110px solid var(--navy-dark);
+        transform-origin: top;
+        transition: transform 0.5s ease 0.2s, z-index 0s ease 0.4s;
+        z-index: 4;
+    }
 
-.dhe{
-    font-style:italic;
-    font-size:32px;
-    margin:15px 0;
-}
+    /* Pjesa e poshtme e zarfit */
+    .envelope-wrapper::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 150px solid var(--navy-envelope);
+        border-right: 150px solid var(--navy-envelope);
+        border-bottom: 100px solid var(--navy-dark);
+        z-index: 3;
+    }
 
-.invite{
-    margin-top:40px;
-    font-size:20px;
-    letter-spacing:2px;
-}
+    /* Letra brenda zarfit */
+    .preview-letter {
+        position: absolute;
+        top: 10px;
+        left: 15px;
+        width: 270px;
+        height: 180px;
+        background: var(--card-bg);
+        z-index: 2;
+        transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #e6dfd5;
+        border-radius: 2px;
+    }
 
-.date{
-    margin-top:50px;
-    font-size:48px;
-    letter-spacing:8px;
-}
+    .preview-letter h1 {
+        font-size: 18px;
+        letter-spacing: 4px;
+        margin: 5px 0;
+        font-weight: normal;
+    }
 
-.time{
-    margin-top:30px;
-    font-size:24px;
-}
+    .preview-letter .and {
+        font-style: italic;
+        font-size: 14px;
+        color: var(--text-light);
+    }
 
-.location-btn{
-    display:inline-block;
-    margin-top:40px;
-    padding:15px 30px;
-    background:#6b5448;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-}
+    /* Vula prej Ari */
+    .wax-seal {
+        position: absolute;
+        top: 90px;
+        left: 135px;
+        width: 34px;
+        height: 34px;
+        background: var(--gold);
+        border-radius: 50%;
+        z-index: 5;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 8px;
+        letter-spacing: 1px;
+        font-weight: bold;
+        transition: opacity 0.3s ease;
+    }
 
-.venue{
-    margin-top:40px;
-    letter-spacing:5px;
-    font-size:28px;
-}
+    .hint-text {
+        position: absolute;
+        bottom: -50px;
+        width: 100%;
+        text-align: center;
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--text-light);
+        animation: blink 1.8s infinite;
+    }
+
+    /* Animacionet kur klikohet zarfi */
+    .envelope-wrapper.open::before {
+        transform: rotateX(180deg);
+        z-index: 1;
+    }
+
+    .envelope-wrapper.open .preview-letter {
+        transform: translateY(-150px);
+        z-index: 5;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .envelope-wrapper.open .wax-seal {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Seksioni i Detajeve */
+    .details-section {
+        width: 100%;
+        max-width: 450px;
+        padding: 60px 20px;
+        box-sizing: border-box;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 1s ease 1s, transform 1s ease 1s;
+    }
+
+    body.show-content .details-section {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .line-divider {
+        width: 50px;
+        height: 1px;
+        background-color: var(--gold);
+        margin: 30px auto;
+    }
+
+    .main-title {
+        font-size: 32px;
+        letter-spacing: 6px;
+        margin: 0;
+        font-weight: normal;
+    }
+
+    .phrase {
+        font-size: 11px;
+        letter-spacing: 3px;
+        line-height: 2;
+        color: var(--text-light);
+        margin: 40px 0;
+    }
+
+    .date-box {
+        font-size: 24px;
+        letter-spacing: 5px;
+        font-weight: bold;
+        margin: 30px 0;
+    }
+
+    .time-box {
+        font-size: 13px;
+        letter-spacing: 2px;
+        color: var(--text-light);
+    }
+
+    .venue-title {
+        font-size: 18px;
+        letter-spacing: 4px;
+        font-weight: normal;
+        margin-top: 40px;
+    }
+
+    .btn-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        max-width: 280px;
+        padding: 15px 20px;
+        text-decoration: none;
+        font-size: 11px;
+        letter-spacing: 2px;
+        font-weight: bold;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+    }
+
+    .maps-btn {
+        background: transparent;
+        color: var(--text-color);
+        border: 1px solid var(--text-color);
+    }
+
+    .rsvp-btn {
+        background: var(--navy-envelope);
+        color: white;
+        border: 1px solid var(--navy-envelope);
+        box-shadow: 0 4px 10px rgba(27, 38, 59, 0.2);
+    }
+
+    @keyframes blink {
+        0% { opacity: 0.4; }
+        50% { opacity: 1; }
+        100% { opacity: 0.4; }
+    }
 </style>
-
 </head>
 <body>
 
-<div class="container">
-
-<div class="monogram">
-K<br>—<br>E
+<div class="envelope-section" id="envSection">
+    <div class="envelope-wrapper" onclick="openEnvelope()">
+        <div class="wax-seal">18.08</div>
+        <div class="preview-letter">
+            <h1>KANITA</h1>
+            <div class="and">dhe</div>
+            <h1>ERNAD</h1>
+        </div>
+        <div class="hint-text" id="hint">Kliko mbi zarf për ta hapur ✨</div>
+    </div>
 </div>
 
-<div class="names">
-<h1>KANITA</h1>
+<div class="details-section">
+    
+    <h1 class="main-title">KANITA</h1>
+    <div class="phrase" style="margin: 15px 0; font-style: italic;">dhe</div>
+    <h1 class="main-title">ERNAD</h1>
 
-<div class="dhe">dhe</div>
+    <div class="line-divider"></div>
 
-<h1>ERNAD</h1>
-</div>
+    <p class="phrase">JU FTOJMË ME GËZIM TË BËHENI PJESË E KUTSIMIT TON RE DHE TË FESTONI ME NE NË DITËN TONË MË TË SHËNUAR</p>
 
-<div class="invite">
-JU FTOJMË ME GËZIM<br>
-NË FESTËN E DASMËS SONË
-</div>
+    <div class="date-box">18 . 08 . 2026</div>
+    
+    <p class="time-box">ARDHJA E TË FTUARVE NË ORËN 19:00</p>
 
-<div class="date">
-18 | 08 | 2026
-</div>
+    <div class="line-divider"></div>
 
-<div class="time">
-ARDHJA E TË FTUARVE<br>
-19:00
-</div>
+    <div class="venue-title">RESTORANT ALIKAS</div>
 
-<a class="location-btn"
-href="https://maps.app.goo.gl/NXuzzyA4ZcH9J64p9?g_st=ic"
-target="_blank">
-📍 HAP LOKACIONIN NË MAPS
-</a>
+    <div class="btn-container">
+        <a class="action-btn maps-btn" href="https://maps.app.goo.gl/NXuzzyA4ZcH9J64p9?g_st=ic" target="_blank">
+            📍 HAP LOKACIONIN NË HARTË
+        </a>
 
-<div class="venue">
-ALIKAS
-</div>
+        <a class="action-btn rsvp-btn" href="https://wa.me/38344111222?text=Përshëndetje!%20Po%20ju%20shkruaj%20për%20të%20konfirmuar%20pjesëmarrjen%20tonë%20në%20dasmën%20tuaj." target="_blank">
+            ✉️ KONFIRMO PJESËMARRJEN
+        </a>
+    </div>
 
 </div>
+
+<script>
+function openEnvelope() {
+    document.querySelector('.envelope-wrapper').classList.add('open');
+    document.getElementById('hint').style.display = 'none';
+    document.body.classList.add('show-content');
+    
+    setTimeout(() => {
+        window.scrollTo({
+            top: 250,
+            behavior: 'smooth'
+        });
+    }, 1200);
+}
+</script>
 
 </body>
 </html>
+
