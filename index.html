@@ -6,13 +6,14 @@
 <title>Ftesë Dasme - Kanita & Ernad</title>
 <style>
     :root {
-        --bg-color: #fcfbfa;
-        --card-bg: #f7f3ef;
-        --text-color: #4a3b32;
-        --text-light: #8c7a6b;
-        --navy-envelope: #1b263b;
-        --navy-dark: #0d1b2a;
-        --gold: #d4af37;
+        --bg-color: #f6f4f0;
+        --text-color: #5a4636;
+        --navy-envelope: #162238;
+        --navy-flap: #1c2d4a;
+        --navy-dark: #0b1321;
+        --gold-light: #e5c07b;
+        --gold-base: #c59b4e;
+        --gold-dark: #966f27;
     }
 
     body {
@@ -36,20 +37,20 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        background-color: var(--bg-color);
     }
 
     .envelope-wrapper {
         position: relative;
-        width: 300px;
-        height: 200px;
-        background: var(--navy-envelope);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        width: 320px;
+        height: 220px;
+        background: linear-gradient(135deg, var(--navy-envelope), var(--navy-dark));
+        box-shadow: 0 15px 35px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.1);
         cursor: pointer;
         perspective: 1000px;
+        border-radius: 4px;
     }
 
-    /* Flap i Zarfit (Pjesa e sipërme) */
+    /* Flap i Sipërm Realistik (me hije reale) */
     .envelope-wrapper::before {
         content: "";
         position: absolute;
@@ -57,15 +58,16 @@
         left: 0;
         width: 0;
         height: 0;
-        border-left: 150px solid transparent;
-        border-right: 150px solid transparent;
-        border-top: 110px solid var(--navy-dark);
+        border-left: 160px solid transparent;
+        border-right: 160px solid transparent;
+        border-top: 125px solid var(--navy-flap);
+        filter: drop-shadow(0 4px 5px rgba(0,0,0,0.3));
         transform-origin: top;
-        transition: transform 0.5s ease 0.2s, z-index 0s ease 0.4s;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s, z-index 0s ease 0.4s;
         z-index: 4;
     }
 
-    /* Pjesa e poshtme e zarfit */
+    /* Pjesa e poshtme dhe anësore e zarfit */
     .envelope-wrapper::after {
         content: "";
         position: absolute;
@@ -73,103 +75,137 @@
         left: 0;
         width: 0;
         height: 0;
-        border-left: 150px solid var(--navy-envelope);
-        border-right: 150px solid var(--navy-envelope);
-        border-bottom: 100px solid var(--navy-dark);
+        border-left: 160px solid rgba(24, 37, 59, 0.98);
+        border-right: 160px solid rgba(24, 37, 59, 0.98);
+        border-bottom: 115px solid var(--navy-dark);
+        filter: drop-shadow(0 -2px 5px rgba(0,0,0,0.15));
         z-index: 3;
+        border-radius: 0 0 4px 4px;
     }
 
-    /* Letra brenda zarfit */
+    /* Letra që qëndron e fshehur brenda */
     .preview-letter {
         position: absolute;
-        top: 10px;
+        top: 12px;
         left: 15px;
-        width: 270px;
-        height: 180px;
-        background: var(--card-bg);
+        width: 290px;
+        height: 195px;
+        background-color: var(--bg-color);
         z-index: 2;
-        transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.6s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border: 1px solid #e6dfd5;
-        border-radius: 2px;
+        border: 1px solid #e1ded9;
+        text-align: center;
+        padding: 10px;
+        box-sizing: border-box;
     }
 
-    .preview-letter h1 {
+    .preview-letter .mini-monogram {
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 1.2;
+        margin-bottom: 15px;
+        opacity: 0.8;
+    }
+
+    .preview-letter h2 {
         font-size: 18px;
         letter-spacing: 4px;
-        margin: 5px 0;
+        margin: 2px 0;
         font-weight: normal;
+        text-transform: uppercase;
     }
 
-    .preview-letter .and {
-        font-style: italic;
-        font-size: 14px;
-        color: var(--text-light);
-    }
-
-    /* Vula prej Ari */
+    /* VULA E DYLLIT 3D REALISTIKE (Wax Seal) */
     .wax-seal {
         position: absolute;
-        top: 90px;
+        top: 95px;
         left: 135px;
-        width: 34px;
-        height: 34px;
-        background: var(--gold);
-        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        /* Formë organike e parregullt si dyll i vërtetë */
+        border-radius: 48% 52% 50% 50% / 51% 49% 52% 48%;
+        background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold-base) 60%, var(--gold-dark));
         z-index: 5;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        box-shadow: 
+            0 4px 10px rgba(0,0,0,0.4), 
+            inset 0 2px 3px rgba(255,255,255,0.4),
+            inset 0 -3px 5px rgba(0,0,0,0.3);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
-        font-size: 8px;
-        letter-spacing: 1px;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Unaza e brendshme e shtypur nga vula metalike */
+    .wax-seal::before {
+        content: "";
+        position: absolute;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 1px 1px rgba(255,255,255,0.2);
+    }
+
+    /* Data 3D e gdhendur/gërmuar brenda dyllit (Letterpress Effect) */
+    .wax-date {
+        font-family: 'Times New Roman', serif;
+        font-size: 11px;
         font-weight: bold;
-        transition: opacity 0.3s ease;
+        color: var(--gold-dark);
+        z-index: 6;
+        letter-spacing: 0.5px;
+        /* Kjo krijon efektin magjik të gërmimit 3D */
+        text-shadow: 
+            -1px -1px 1px rgba(0, 0, 0, 0.4), 
+            1px 1px 1px rgba(255, 255, 255, 0.4);
+        opacity: 0.9;
     }
 
     .hint-text {
         position: absolute;
-        bottom: -50px;
+        bottom: -55px;
         width: 100%;
         text-align: center;
         font-size: 11px;
         letter-spacing: 2px;
-        color: var(--text-light);
+        color: #8c7a6b;
         animation: blink 1.8s infinite;
     }
 
-    /* Animacionet kur klikohet zarfi */
+    /* Animacionet e Hapjes */
     .envelope-wrapper.open::before {
         transform: rotateX(180deg);
         z-index: 1;
     }
 
     .envelope-wrapper.open .preview-letter {
-        transform: translateY(-150px);
+        transform: translateY(-160px);
         z-index: 5;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.12);
     }
 
     .envelope-wrapper.open .wax-seal {
         opacity: 0;
+        transform: scale(0.8);
         pointer-events: none;
     }
 
-    /* Seksioni i Detajeve */
+    /* SEKSIONI KRYESOR (SHTRIRJA ME SCROLL) */
     .details-section {
         width: 100%;
         max-width: 450px;
-        padding: 60px 20px;
+        padding: 40px 20px 80px 20px;
         box-sizing: border-box;
         text-align: center;
         opacity: 0;
         transform: translateY(40px);
-        transition: opacity 1s ease 1s, transform 1s ease 1s;
+        transition: opacity 1s ease 1.2s, transform 1s ease 1.2s;
     }
 
     body.show-content .details-section {
@@ -177,52 +213,80 @@
         transform: translateY(0);
     }
 
-    .line-divider {
-        width: 50px;
-        height: 1px;
-        background-color: var(--gold);
-        margin: 30px auto;
+    /* STILIMI I TEKSTIT FIKS SI NË FOTO */
+    .monogram {
+        font-size: 28px;
+        letter-spacing: 2px;
+        line-height: 1.5;
+        margin-bottom: 40px;
+        font-weight: normal;
     }
 
-    .main-title {
-        font-size: 32px;
+    .line-short {
+        width: 40px;
+        height: 1px;
+        background-color: var(--text-color);
+        margin: 5px auto;
+    }
+
+    .name {
+        font-size: 26px;
         letter-spacing: 6px;
         margin: 0;
         font-weight: normal;
+        text-transform: uppercase;
     }
 
-    .phrase {
-        font-size: 11px;
+    .and {
+        font-style: italic;
+        font-size: 18px;
+        margin: 15px 0;
+        color: #7a6553;
+    }
+
+    .main-text {
+        font-size: 12px;
         letter-spacing: 3px;
         line-height: 2;
-        color: var(--text-light);
         margin: 40px 0;
+        text-transform: uppercase;
     }
 
-    .date-box {
+    .date-section {
         font-size: 24px;
-        letter-spacing: 5px;
-        font-weight: bold;
-        margin: 30px 0;
-    }
-
-    .time-box {
-        font-size: 13px;
-        letter-spacing: 2px;
-        color: var(--text-light);
-    }
-
-    .venue-title {
-        font-size: 18px;
         letter-spacing: 4px;
-        font-weight: normal;
-        margin-top: 40px;
+        margin: 30px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
     }
 
+    .date-divider {
+        color: #7a6553;
+    }
+
+    .time-section {
+        font-size: 13px;
+        letter-spacing: 3px;
+        line-height: 1.8;
+        margin: 30px 0;
+        text-transform: uppercase;
+    }
+
+    .venue {
+        font-size: 14px;
+        letter-spacing: 5px;
+        margin-top: 40px;
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+
+    /* Butonat */
     .btn-container {
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
         align-items: center;
         margin-top: 50px;
     }
@@ -231,14 +295,14 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 80%;
-        max-width: 280px;
-        padding: 15px 20px;
+        width: 85%;
+        max-width: 260px;
+        padding: 14px 20px;
         text-decoration: none;
         font-size: 11px;
         letter-spacing: 2px;
         font-weight: bold;
-        border-radius: 30px;
+        border-radius: 4px;
         transition: all 0.3s ease;
     }
 
@@ -249,10 +313,9 @@
     }
 
     .rsvp-btn {
-        background: var(--navy-envelope);
+        background: var(--text-color);
         color: white;
-        border: 1px solid var(--navy-envelope);
-        box-shadow: 0 4px 10px rgba(27, 38, 59, 0.2);
+        border: 1px solid var(--text-color);
     }
 
     @keyframes blink {
@@ -266,11 +329,13 @@
 
 <div class="envelope-section" id="envSection">
     <div class="envelope-wrapper" onclick="openEnvelope()">
-        <div class="wax-seal">18.08</div>
+        <div class="wax-seal">
+            <span class="wax-date">18.08</span>
+        </div>
         <div class="preview-letter">
-            <h1>KANITA</h1>
-            <div class="and">dhe</div>
-            <h1>ERNAD</h1>
+            <div class="mini-monogram">E<br>—<br>K</div>
+            <h2>KANITA</h2>
+            <h2>ERNAD</h2>
         </div>
         <div class="hint-text" id="hint">Kliko mbi zarf për ta hapur ✨</div>
     </div>
@@ -278,28 +343,36 @@
 
 <div class="details-section">
     
-    <h1 class="main-title">KANITA</h1>
-    <div class="phrase" style="margin: 15px 0; font-style: italic;">dhe</div>
-    <h1 class="main-title">ERNAD</h1>
+    <div class="monogram">
+        E
+        <div class="line-short"></div>
+        K
+    </div>
 
-    <div class="line-divider"></div>
+    <h1 class="name">KANITA</h1>
+    <div class="and">the</div>
+    <h1 class="name">ERNAD</h1>
 
-    <p class="phrase">JU FTOJMË ME GËZIM TË BËHENI PJESË E KUTSIMIT TON RE DHE TË FESTONI ME NE NË DITËN TONË MË TË SHËNUAR</p>
+    <p class="main-text">JU FTOJMË ME GËZIM<br>NË FESTËN E DASMËS SONË.</p>
 
-    <div class="date-box">18 . 08 . 2026</div>
+    <div class="date-section">
+        <span>18</span> <span class="date-divider">|</span> 
+        <span>08</span> <span class="date-divider">|</span> 
+        <span>26</span>
+    </div>
     
-    <p class="time-box">ARDHJA E TË FTUARVE NË ORËN 19:00</p>
+    <p class="time-section">
+        ARDHJA E TË FTUARVE<br>
+        <span style="letter-spacing: 1px;">19:00</span>
+    </p>
 
-    <div class="line-divider"></div>
-
-    <div class="venue-title">RESTORANT ALIKAS</div>
+    <div class="venue">ALIKAS</div>
 
     <div class="btn-container">
         <a class="action-btn maps-btn" href="https://maps.app.goo.gl/NXuzzyA4ZcH9J64p9?g_st=ic" target="_blank">
             📍 HAP LOKACIONIN NË HARTË
         </a>
-
-        <a class="action-btn rsvp-btn" href="https://wa.me/38344111222?text=Përshëndetje!%20Po%20ju%20shkruaj%20për%20të%20konfirmuar%20pjesëmarrjen%20tonë%20në%20dasmën%20tuaj." target="_blank">
+        <a class="action-btn rsvp-btn" href="https://wa.me/38970278182?text=Përshëndetje!%20Po%20ju%20shkruaj%20për%20të%20konfirmuar%20pjesëmarrjen%20tonë%20në%20dasmën%20tuaj." target="_blank">
             ✉️ KONFIRMO PJESËMARRJEN
         </a>
     </div>
@@ -312,15 +385,15 @@ function openEnvelope() {
     document.getElementById('hint').style.display = 'none';
     document.body.classList.add('show-content');
     
+    // Rrëshqitja e butë poshtë automatikisht drejt ftesës së hapur
     setTimeout(() => {
         window.scrollTo({
-            top: 250,
+            top: 350,
             behavior: 'smooth'
         });
-    }, 1200);
+    }, 1400);
 }
 </script>
 
 </body>
 </html>
-
